@@ -1,8 +1,6 @@
-# Testing checkpoint–resolution alignment
+# Testing Checkpoint–Resolution Alignment in Frozen Dual-Embedding Vision–Language Checkpoints: Accuracy and Recorded-Protocol Costs
 
-Code and compact results accompanying **Testing Checkpoint–Resolution Alignment
-in Frozen Dual-Embedding Vision–Language Checkpoints: Accuracy and
-Recorded-Protocol Costs**, accepted at DICTA 2026.
+Code and compact results for the paper accepted at **DICTA 2026**.
 
 **Author:** Trong Cuong Tran, The University of Sydney, Sydney, Australia.
 
@@ -83,7 +81,7 @@ and command construction; it does not constitute a new GPU replication.
 ## Citation and licensing
 
 Author and title metadata are provided in [CITATION.cff](CITATION.cff).
-Stable code snapshot: [v1.0.0](https://github.com/cuongisme04/vlm-resolution-alignment/tree/v1.0.0).
+Stable code snapshot: [v1.0.1](https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.1).
 Proceedings DOI and publication details will be added when available.
 
 No project-wide license has been assigned to this repository. Third-party
