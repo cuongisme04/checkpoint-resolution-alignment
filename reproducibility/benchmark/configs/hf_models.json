@@ -1,0 +1,50 @@
+{
+  "description": "HuggingFace transformers models for the non-CLIP architectural families. Consumed by bench_hf_blip_classification.py, bench_hf_blip_retrieval.py, and bench_hf_paligemma_classification.py. Kept separate from configs/models.json because the open_clip benchmark scripts cannot load these.",
+  "models": [
+    {
+      "id": "blip_itm_base_coco",
+      "hub_id": "Salesforce/blip-itm-base-coco",
+      "architecture_family": "BLIP fusion encoder-decoder",
+      "visual_architecture": "Vision Transformer + cross-attention text decoder",
+      "scale": "base",
+      "native_resolution": 384,
+      "patch_size": 16,
+      "supports_classification": true,
+      "supports_retrieval": true
+    },
+    {
+      "id": "blip_itm_large_coco",
+      "hub_id": "Salesforce/blip-itm-large-coco",
+      "architecture_family": "BLIP fusion encoder-decoder",
+      "visual_architecture": "Vision Transformer + cross-attention text decoder",
+      "scale": "large",
+      "native_resolution": 384,
+      "patch_size": 16,
+      "supports_classification": true,
+      "supports_retrieval": true
+    },
+    {
+      "id": "paligemma_3b_mix_224",
+      "hub_id": "google/paligemma-3b-mix-224",
+      "architecture_family": "Decoder-only MM-LLM",
+      "visual_architecture": "SigLIP-L vision encoder + Gemma-2B decoder",
+      "scale": "3B native 224",
+      "native_resolution": 224,
+      "patch_size": 14,
+      "supports_classification": true,
+      "supports_retrieval": false,
+      "notes": "Retrieval requires 5M LLM forwards on Flickr30k 1k; not feasible in 48h budget."
+    },
+    {
+      "id": "paligemma_3b_mix_448",
+      "hub_id": "google/paligemma-3b-mix-448",
+      "architecture_family": "Decoder-only MM-LLM",
+      "visual_architecture": "SigLIP-L vision encoder + Gemma-2B decoder",
+      "scale": "3B native 448",
+      "native_resolution": 448,
+      "patch_size": 14,
+      "supports_classification": true,
+      "supports_retrieval": false
+    }
+  ]
+}

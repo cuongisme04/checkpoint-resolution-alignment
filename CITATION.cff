@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying DICTA 2026 paper when using this software or its results. Final proceedings metadata will be added when available."
+type: software
+title: "Testing Checkpoint–Resolution Alignment in Frozen Dual-Embedding Vision–Language Checkpoints: Accuracy and Recorded-Protocol Costs"
+authors:
+  - family-names: Tran
+    given-names: Trong Cuong
+    affiliation: The University of Sydney
+    email: trantrongcuong1012@gmail.com
+repository-code: "https://github.com/cuongisme04/DICTA-2026-code"
+url: "https://github.com/cuongisme04/DICTA-2026-code/tree/v1.0.0"
+version: 1.0.0
+date-released: 2026-10-10

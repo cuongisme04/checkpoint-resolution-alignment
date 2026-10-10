@@ -1,0 +1,159 @@
+{
+  "description": "Reconstructed executable form of the recorded 50-cell protocol. Settings are locked to the canonical published-result CSV; this file is not an original shell transcript.",
+  "canonical_summary_sha256": "2d2fa4103fb557776d9ad5d78f9d0ed030242ba34cde581f8051409bc1e17ea1",
+  "expected_cells": {
+    "zeroshot_classification": 28,
+    "image_text_retrieval": 22
+  },
+  "classification": [
+    {
+      "adapter": "openclip",
+      "models": ["clip_rn50_openai"],
+      "resolutions": [160, 224, 448],
+      "image_batch_size": 64,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["clip_vit_b32_openai"],
+      "resolutions": [160, 224, 448],
+      "image_batch_size": 64,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["clip_vit_b16_openai"],
+      "resolutions": [160, 224, 336, 448],
+      "image_batch_size": 64,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["clip_vit_l14_openai"],
+      "resolutions": [224, 336, 448],
+      "image_batch_size": 64,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["siglip_b16_webli"],
+      "resolutions": [160, 224, 336, 448],
+      "image_batch_size": 64,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["mobileclip_s1_datacompdr"],
+      "resolutions": [224],
+      "image_batch_size": 64,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "blip_itc",
+      "models": ["blip_itm_base_coco", "blip_itm_large_coco"],
+      "resolutions": [160, 224, 336, 448],
+      "image_batch_size": 32,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3,
+      "itm_rerank_topk": 0
+    },
+    {
+      "adapter": "paligemma_loglik",
+      "models": ["paligemma_3b_mix_224"],
+      "resolutions": [224],
+      "image_batch_size": 1,
+      "precision": "bf16",
+      "warmup_batches": 2,
+      "timed_repeats": 1,
+      "prompt_chunk_size": 16,
+      "score_normalization": "sum"
+    },
+    {
+      "adapter": "paligemma_loglik",
+      "models": ["paligemma_3b_mix_448"],
+      "resolutions": [448],
+      "image_batch_size": 1,
+      "precision": "bf16",
+      "warmup_batches": 5,
+      "timed_repeats": 1,
+      "prompt_chunk_size": 4,
+      "score_normalization": "sum",
+      "expandable_cuda_segments": true
+    }
+  ],
+  "retrieval": [
+    {
+      "adapter": "openclip",
+      "models": ["clip_rn50_openai"],
+      "resolutions": [160, 224, 448],
+      "image_batch_size": 64,
+      "text_batch_size": 256,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["clip_vit_b32_openai"],
+      "resolutions": [224, 448],
+      "image_batch_size": 64,
+      "text_batch_size": 256,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["clip_vit_b16_openai"],
+      "resolutions": [224, 336, 448],
+      "image_batch_size": 64,
+      "text_batch_size": 256,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["clip_vit_l14_openai"],
+      "resolutions": [224, 336, 448],
+      "image_batch_size": 64,
+      "text_batch_size": 256,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["siglip_b16_webli"],
+      "resolutions": [224, 336, 448],
+      "image_batch_size": 64,
+      "text_batch_size": 256,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "blip_itc",
+      "models": ["blip_itm_base_coco", "blip_itm_large_coco"],
+      "resolutions": [160, 224, 336, 448],
+      "image_batch_size": 32,
+      "text_batch_size": 128,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    }
+  ]
+}

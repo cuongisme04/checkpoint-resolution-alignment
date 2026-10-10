@@ -1,0 +1,13 @@
+# Recovered pinned requirements used to construct the benchmark environment.
+# The live setup record separately confirmed the torch, torchvision,
+# open_clip_torch, and transformers versions.
+torch==2.4.1
+torchvision==0.19.1
+open_clip_torch==2.26.1
+transformers==4.44.2
+accelerate==0.34.2
+sentencepiece==0.2.0
+datasets==2.21.0
+Pillow==10.4.0
+matplotlib==3.9.2
+numpy==1.26.4

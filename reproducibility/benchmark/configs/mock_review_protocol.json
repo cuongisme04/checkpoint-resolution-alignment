@@ -1,0 +1,77 @@
+{
+  "schema_version": "dicta-mock-review-protocol-v1",
+  "description": "Focused post-review protocol. GPU execution is gated until a RunPod pod is provisioned.",
+  "expected_cells": {
+    "pet_blip_validation": 6,
+    "flickr_grouped_outcomes": 24,
+    "batch_sensitivity": 24
+  },
+  "classification": [
+    {
+      "adapter": "blip_itc",
+      "models": ["blip_itm_base_coco", "blip_itm_large_coco"],
+      "resolutions": [336, 384, 448],
+      "image_batch_size": 32,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3,
+      "itm_rerank_topk": 0
+    }
+  ],
+  "retrieval": [
+    {
+      "adapter": "openclip",
+      "models": ["clip_rn50_openai"],
+      "resolutions": [160, 224, 448],
+      "image_batch_size": 64,
+      "text_batch_size": 256,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["clip_vit_b32_openai"],
+      "resolutions": [224, 448],
+      "image_batch_size": 64,
+      "text_batch_size": 256,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "openclip",
+      "models": ["clip_vit_b16_openai", "clip_vit_l14_openai", "siglip_b16_webli"],
+      "resolutions": [224, 336, 448],
+      "image_batch_size": 64,
+      "text_batch_size": 256,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    },
+    {
+      "adapter": "blip_itc",
+      "models": ["blip_itm_base_coco", "blip_itm_large_coco"],
+      "resolutions": [160, 224, 336, 384, 448],
+      "image_batch_size": 32,
+      "text_batch_size": 128,
+      "precision": "fp16",
+      "warmup_batches": 2,
+      "timed_repeats": 3
+    }
+  ],
+  "batch_sensitivity": {
+    "batch_sizes": [1, 32],
+    "blocks": 5,
+    "warmup_iterations_per_block": 10,
+    "timed_iterations_per_block": 50,
+    "precision": "fp16",
+    "scope": "cached CUDA tensor; image encoder plus projection and L2 normalization",
+    "pairs": [
+      {"adapter": "openclip", "model": "clip_vit_b16_openai", "resolutions": [224, 448]},
+      {"adapter": "openclip", "model": "siglip_b16_webli", "resolutions": [224, 448]},
+      {"adapter": "blip_itc", "model": "blip_itm_base_coco", "resolutions": [224, 336, 384, 448]},
+      {"adapter": "blip_itc", "model": "blip_itm_large_coco", "resolutions": [224, 336, 384, 448]}
+    ]
+  }
+}

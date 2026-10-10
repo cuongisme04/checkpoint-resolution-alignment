@@ -1,0 +1,61 @@
+{
+  "description": "OpenCLIP model matrix for the Charlie Version experiments. Non-OpenCLIP families (BLIP, PaliGemma) are declared in configs/hf_models.json and consumed by their own benchmark scripts.",
+  "default_resolutions": [160, 224, 336, 448],
+  "models": [
+    {
+      "id": "clip_rn50_openai",
+      "model_name": "RN50",
+      "pretrained": "openai",
+      "architecture_family": "CLIP dual encoder",
+      "visual_architecture": "Modified ResNet",
+      "scale": "resnet baseline",
+      "native_resolution": 224
+    },
+    {
+      "id": "clip_vit_b32_openai",
+      "model_name": "ViT-B-32",
+      "pretrained": "openai",
+      "architecture_family": "CLIP dual encoder",
+      "visual_architecture": "Vision Transformer",
+      "scale": "base coarse patch",
+      "native_resolution": 224
+    },
+    {
+      "id": "clip_vit_b16_openai",
+      "model_name": "ViT-B-16",
+      "pretrained": "openai",
+      "architecture_family": "CLIP dual encoder",
+      "visual_architecture": "Vision Transformer",
+      "scale": "base finer patch",
+      "native_resolution": 224
+    },
+    {
+      "id": "clip_vit_l14_openai",
+      "model_name": "ViT-L-14",
+      "pretrained": "openai",
+      "architecture_family": "CLIP dual encoder",
+      "visual_architecture": "Vision Transformer",
+      "scale": "large",
+      "native_resolution": 224
+    },
+    {
+      "id": "siglip_b16_webli",
+      "model_name": "ViT-B-16-SigLIP",
+      "pretrained": "webli",
+      "architecture_family": "Sigmoid CLIP dual encoder",
+      "visual_architecture": "Vision Transformer",
+      "scale": "base sigmoid loss",
+      "native_resolution": 224
+    },
+    {
+      "id": "mobileclip_s1_datacompdr",
+      "model_name": "MobileCLIP-S1",
+      "pretrained": "datacompdr",
+      "architecture_family": "Efficient CLIP dual encoder",
+      "visual_architecture": "MobileCLIP hybrid",
+      "scale": "small efficient",
+      "native_resolution": 224,
+      "notes": "Pilot CIFAR-100 run was at random baseline; sanity-check at 224 on Pet before inclusion in the final sweep."
+    }
+  ]
+}

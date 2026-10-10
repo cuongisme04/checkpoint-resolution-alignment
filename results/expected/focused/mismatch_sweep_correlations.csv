@@ -1,0 +1,18 @@
+model_id,task,dataset,performance_metric,resolution_count,reference_resolution,reference_basis,peak_resolution,spearman_mismatch_regret,aggregation_status,closest_to_reference_has_best_point_estimate
+blip_itm_base_coco,image_text_retrieval,flickr30k_test1k,mean_recall_at_1,5,384,downstream config.,384,0.9,included,1
+blip_itm_base_coco,zeroshot_classification,oxford_iiit_pet,top1_accuracy,5,384,downstream config.,336,0.7,included,0
+blip_itm_large_coco,image_text_retrieval,flickr30k_test1k,mean_recall_at_1,5,384,downstream config.,384,1,included,1
+blip_itm_large_coco,zeroshot_classification,oxford_iiit_pet,top1_accuracy,5,384,downstream config.,336,0.9,included,0
+clip_rn50_openai,image_text_retrieval,flickr30k_test1k,mean_recall_at_1,3,224,release config.,224,0.5,included,1
+clip_rn50_openai,zeroshot_classification,oxford_iiit_pet,top1_accuracy,3,224,release config.,224,1,included,1
+clip_vit_b16_openai,image_text_retrieval,flickr30k_test1k,mean_recall_at_1,3,224,release config.,224,1,included,1
+clip_vit_b16_openai,zeroshot_classification,oxford_iiit_pet,top1_accuracy,4,224,release config.,224,0.8,included,1
+clip_vit_b32_openai,image_text_retrieval,flickr30k_test1k,mean_recall_at_1,2,224,release config.,224,,excluded_fewer_than_three,1
+clip_vit_b32_openai,zeroshot_classification,oxford_iiit_pet,top1_accuracy,3,224,release config.,224,1,included,1
+clip_vit_l14_openai,image_text_retrieval,flickr30k_test1k,mean_recall_at_1,3,224,release config.,224,1,included,1
+clip_vit_l14_openai,zeroshot_classification,oxford_iiit_pet,top1_accuracy,3,224,release config.,224,1,included,1
+mobileclip_s1_datacompdr,zeroshot_classification,oxford_iiit_pet,top1_accuracy,1,224,release config.,224,,excluded_fewer_than_three,1
+paligemma_3b_mix_224,zeroshot_classification,oxford_iiit_pet,top1_accuracy,1,224,resolution-specific ckpt.,224,,excluded_fewer_than_three,1
+paligemma_3b_mix_448,zeroshot_classification,oxford_iiit_pet,top1_accuracy,1,448,resolution-specific ckpt.,448,,excluded_fewer_than_three,1
+siglip_b16_webli,image_text_retrieval,flickr30k_test1k,mean_recall_at_1,3,224,release config.,336,0.5,included,0
+siglip_b16_webli,zeroshot_classification,oxford_iiit_pet,top1_accuracy,4,224,release config.,224,0.4,included,1

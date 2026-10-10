@@ -1,0 +1,5 @@
+model_id,task,status,missing_resolutions,contrast_384_vs_336_448_mean,ci_lower_95,ci_upper_95,ci_method,bootstrap_seed,bootstrap_repetitions,sample_group_count
+blip_itm_base_coco,zeroshot_classification,complete,,-0.002316707549741004,-0.008585445625511001,0.003952030526028885,paired_sample_bootstrap,20260714,10000,3669
+blip_itm_base_coco,image_text_retrieval,complete,,0.0121,0.006199999999999983,0.018199999999999994,paired_image_grouped_bootstrap,20260714,10000,1000
+blip_itm_large_coco,zeroshot_classification,complete,,-0.0012264922322158256,-0.0068138457345325865,0.004360861270100824,paired_sample_bootstrap,20260714,10000,3669
+blip_itm_large_coco,image_text_retrieval,complete,,0.002950000000000008,-0.0025999999999999383,0.008500000000000063,paired_image_grouped_bootstrap,20260714,10000,1000

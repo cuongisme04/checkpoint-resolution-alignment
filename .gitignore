@@ -1,0 +1,30 @@
+# Local environment and editor files
+.DS_Store
+.Rhistory
+.env
+.env.*
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.swp
+*.swo
+
+# Recomputed artifacts and verification logs
+/analysis/processed/
+/build/
+.pytest_cache/
+
+# New GPU runs and downloaded assets; retained release inputs live in results/
+/reproducibility/benchmark/outputs/
+/reproducibility/benchmark/datasets/
+/reproducibility/benchmark/.hf_cache/
+/reproducibility/benchmark/.venv/
+/reproducibility/benchmark/setup.local.txt
+/datasets/
+/checkpoints/
+/models/
+*.ckpt
+*.pt
+*.pth
+*.safetensors

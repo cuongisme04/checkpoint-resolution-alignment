@@ -1,0 +1,23 @@
+\begin{tabular}{@{}llrrrrcl@{}}
+\hline
+Checkpoint & Task & $n_R$ & $R_{\mathrm{ref}}$ & $R_{\mathrm{peak}}$ & $\rho$ & Closest best & Reference basis \\
+\hline
+BLIP-1 base & Flickr & 5 & 384 & 384 & 0.90 & yes & downstream config. \\
+BLIP-1 base & Pet & 5 & 384 & 336 & 0.70 & no & downstream config. \\
+BLIP-1 large & Flickr & 5 & 384 & 384 & 1.00 & yes & downstream config. \\
+BLIP-1 large & Pet & 5 & 384 & 336 & 0.90 & no & downstream config. \\
+CLIP RN50 & Flickr & 3 & 224 & 224 & 0.50 & yes & release config. \\
+CLIP RN50 & Pet & 3 & 224 & 224 & 1.00 & yes & release config. \\
+CLIP B/16 & Flickr & 3 & 224 & 224 & 1.00 & yes & release config. \\
+CLIP B/16 & Pet & 4 & 224 & 224 & 0.80 & yes & release config. \\
+CLIP B/32 & Flickr & 2 & 224 & 224 & -- & yes & release config. \\
+CLIP B/32 & Pet & 3 & 224 & 224 & 1.00 & yes & release config. \\
+CLIP L/14 & Flickr & 3 & 224 & 224 & 1.00 & yes & release config. \\
+CLIP L/14 & Pet & 3 & 224 & 224 & 1.00 & yes & release config. \\
+MobileCLIP-S1 & Pet & 1 & 224 & 224 & -- & yes & release config. \\
+PaliGemma-224 & Pet & 1 & 224 & 224 & -- & yes & resolution-specific ckpt. \\
+PaliGemma-448 & Pet & 1 & 448 & 448 & -- & yes & resolution-specific ckpt. \\
+SigLIP B/16 & Flickr & 3 & 224 & 336 & 0.50 & no & release config. \\
+SigLIP B/16 & Pet & 4 & 224 & 224 & 0.40 & yes & release config. \\
+\hline
+\end{tabular}
