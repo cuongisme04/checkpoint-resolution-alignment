@@ -31,6 +31,50 @@ Historical filenames containing `mock_review` identify the focused internal
 validation run. They are retained for provenance; they do not denote official
 conference reviews.
 
+## Experiment hardware and protocol
+
+All 54 reported configurations used **one NVIDIA RTX 6000 Ada Generation GPU
+with 48 GB VRAM**, rented through **RunPod**. The retained historical results
+and the focused validation run used the same GPU model but different software
+environments:
+
+| Component | Retained historical environment | Focused validation environment |
+|---|---|---|
+| NVIDIA driver | 570.124.06 | 550.127.05 |
+| PyTorch CUDA runtime | 12.1 | 12.4 |
+| Python | 3.12.3 | 3.11.10 |
+| PyTorch | 2.4.1 | 2.4.1+cu124 |
+
+Both environments recorded torchvision 0.19.1, open_clip_torch 2.26.1 and
+transformers 4.44.2. The [full environment record](reproducibility/recorded_environment.md)
+includes the available CPU, RAM and operating-system details, and explicitly
+marks information that was not retained.
+
+| Evaluated adapter | Precision | Classification image batch | Retrieval image / text batch |
+|---|---|---:|---:|
+| OpenCLIP (CLIP, SigLIP, MobileCLIP) | FP16 | 64 | 64 / 256, where evaluated |
+| BLIP ITC dual embedding | FP16 | 32 | 32 / 128 |
+| PaliGemma class-likelihood scoring | BF16 | 1 | Not evaluated |
+
+OpenCLIP and BLIP used two warm-up batches and three timed repeats.
+PaliGemma used one timed repeat, with two warm-up batches at 224 pixels and
+five at 448 pixels. The separate cached-input batch-sensitivity experiment
+compared batches 1 and 32 under its own recorded timing protocol.
+
+Reported primary latency is `1000 / throughput_examples_s` in milliseconds
+per image under the recorded batch protocol; it is not batch-one response
+latency. Memory is peak allocated GPU memory. Adapter timing boundaries differ,
+so these costs do not provide a shared cross-family efficiency ranking.
+
+For reproduction, the package also records the
+[checkpoint registries and resolution/prompt/protocol settings](reproducibility/benchmark/configs/),
+[dataset preparation and test splits](reproducibility/README.md#dataset-preparation),
+[statistical analysis commands](analysis/README.md), and
+[retained outcomes, provenance and checksums](results/README.md).
+Seeds and resampling counts are recorded in the analysis scripts and their
+outputs. The focused run repeated six BLIP Pet cells and all 24 Flickr30k
+cells; it did not independently repeat every historical Pet configuration.
+
 ## Reproduce the analysis without a GPU
 
 Use Python 3.11. Create an isolated environment and install the
@@ -81,7 +125,7 @@ and command construction; it does not constitute a new GPU replication.
 ## Citation and licensing
 
 Author and title metadata are provided in [CITATION.cff](CITATION.cff).
-Stable code snapshot: [v1.0.1](https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.1).
+Stable code snapshot: [v1.0.2](https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.2).
 Proceedings DOI and publication details will be added when available.
 
 No project-wide license has been assigned to this repository. Third-party
