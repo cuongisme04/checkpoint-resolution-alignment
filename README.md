@@ -83,7 +83,7 @@ and command construction; it does not constitute a new GPU replication.
 ## Citation and licensing
 
 Author and title metadata are provided in [CITATION.cff](CITATION.cff).
-Stable code snapshot: [v1.0.0](https://github.com/cuongisme04/DICTA-2026-code/tree/v1.0.0).
+Stable code snapshot: [v1.0.0](https://github.com/cuongisme04/vlm-resolution-alignment/tree/v1.0.0).
 Proceedings DOI and publication details will be added when available.
 
 No project-wide license has been assigned to this repository. Third-party
