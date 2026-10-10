@@ -31,6 +31,33 @@ Historical filenames containing `mock_review` identify the focused internal
 validation run. They are retained for provenance; they do not denote official
 conference reviews.
 
+## Dataset sources, attribution and terms
+
+The datasets are obtained separately; this repository does not redistribute
+their images or captions. The project's MIT license does not license those
+datasets or downloaded model weights.
+
+| Dataset | Evaluation subset and access route | Source and usage terms |
+|---|---|---|
+| Oxford-IIIT Pet | Official test split: 3,669 images, 37 breeds; prepared through `torchvision.datasets.OxfordIIITPet` | The [official Oxford VGG dataset page](https://www.robots.ox.ac.uk/~vgg/data/pets/) lists [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); image copyright remains with the original owners. |
+| Flickr30k | Karpathy test split: 1,000 images and 5,000 captions; loaded through [`nlphuji/flickr30k`](https://huggingface.co/datasets/nlphuji/flickr30k) using its internal `split` field | The [original dataset page](https://shannon.cs.illinois.edu/DenotationGraph/) provides the images for non-commercial research and educational use, subject to Flickr's terms; image copyright belongs to the original owners. The access mirror is not a grant of rights from this project. |
+
+Please credit the dataset and split authors when using these benchmarks:
+
+- **Oxford-IIIT Pet:** Omkar M. Parkhi, Andrea Vedaldi, Andrew Zisserman and
+  C. V. Jawahar, *Cats and Dogs*, CVPR 2012. See the
+  [official dataset and publication page](https://www.robots.ox.ac.uk/~vgg/data/pets/).
+- **Flickr30k:** Peter Young, Alice Lai, Micah Hodosh and Julia Hockenmaier,
+  [*From image descriptions to visual denotations: New similarity metrics for semantic inference over event descriptions*](https://aclanthology.org/Q14-1006/), TACL 2014.
+- **Karpathy split:** Andrej Karpathy and Li Fei-Fei,
+  [*Deep Visual-Semantic Alignments for Generating Image Descriptions*](https://cs.stanford.edu/people/karpathy/deepimagesent/), CVPR 2015.
+
+The original Flickr30k download's exact Hugging Face revision was not recorded.
+This remains a reproducibility limitation; verify the split counts when rerunning.
+See [dataset preparation](reproducibility/README.md#dataset-preparation) for commands
+and [retained data](results/README.md) for the scope of the path-free numerical
+outcomes released here. Dataset source and terms links were checked on 10 October 2026.
+
 ## Experiment hardware and protocol
 
 All 54 reported configurations used **one NVIDIA RTX 6000 Ada Generation GPU
@@ -125,9 +152,10 @@ and command construction; it does not constitute a new GPU replication.
 ## Citation and licensing
 
 Author and title metadata are provided in [CITATION.cff](CITATION.cff).
-Stable code snapshot: [v1.0.3](https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.3).
+Stable code snapshot: [v1.0.4](https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.4).
 Proceedings DOI and publication details will be added when available.
 
-This project is licensed under the [MIT License](LICENSE).
+The project code is licensed under the [MIT License](LICENSE).
 Copyright (c) 2026 Trong Cuong Tran. Third-party dependencies retain their own
-licenses.
+licenses. Dataset and model-weight terms are separate; see the dataset notes above
+and the relevant checkpoint publishers' terms.

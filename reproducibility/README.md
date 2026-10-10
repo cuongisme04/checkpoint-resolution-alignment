@@ -118,6 +118,10 @@ persistent path outside the repository to avoid repeated downloads.
 
 ## Dataset preparation
 
+Dataset sources, author credits and usage terms are documented in the
+[main README](../README.md#dataset-sources-attribution-and-terms). The code's
+MIT license does not apply to downloaded dataset images, captions or model weights.
+
 The benchmark scripts create absolute image paths in local manifest files.
 Those manifests and downloaded images are ignored by Git.
 
