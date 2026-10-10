@@ -8,6 +8,7 @@ authors:
     affiliation: The University of Sydney
     email: trantrongcuong1012@gmail.com
 repository-code: "https://github.com/cuongisme04/checkpoint-resolution-alignment"
-url: "https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.2"
-version: 1.0.2
+url: "https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.3"
+version: 1.0.3
 date-released: 2026-10-10
+license: MIT
