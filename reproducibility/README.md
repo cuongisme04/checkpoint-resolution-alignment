@@ -120,6 +120,30 @@ the current Hugging Face CLI workflow. Never place a token in a command file,
 configuration file, `.env`, or Git history. `HF_HOME` may be pointed to a
 persistent path outside the repository to avoid repeated downloads.
 
+## Checkpoint versions and provenance
+
+The [OpenCLIP registry](benchmark/configs/models.json) records model names and
+pretrained labels, and the [Hugging Face registry](benchmark/configs/hf_models.json)
+records BLIP and PaliGemma repository identifiers. The retained Hugging Face
+adapters call `from_pretrained(spec.hub_id)` for models and processors without
+an explicit `revision`. Exact resolved Hub commit IDs or weight checksums
+were not retained. A checkpoint repository identifier therefore does not pin
+an immutable model-and-processor snapshot.
+
+The [focused run manifest](../results/supporting/focused_run/run_manifest_outcomes.json)
+retains protocol, registry and dataset-manifest hashes; these do not establish
+the revision of downloaded weights. The `v1.0.4` Git tag fixes the released
+code and saved numerical evidence, but not every upstream download. Historical
+Hub revisions cannot be recovered reliably by checking the current Hub state.
+For new experiments, record the resolved model and processor revisions and
+weight checksums alongside the run manifest; do not label a newly selected
+revision as the one used in the original experiments.
+
+See [source provenance](benchmark/SOURCE_PROVENANCE.md) for packaged-source
+checksums, [recorded_environment.md](recorded_environment.md) for captured
+software versions, and the [evidence guide](../analysis/README.md#evidence-guide)
+for the analyses reproducible directly from retained outcomes.
+
 ## Dataset preparation
 
 Dataset sources, author credits and usage terms are documented in the

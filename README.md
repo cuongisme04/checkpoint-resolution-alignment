@@ -115,6 +115,8 @@ For reproduction, the package also records the
 [dataset preparation and test splits](reproducibility/README.md#dataset-preparation),
 [statistical analysis commands](analysis/README.md), and
 [retained outcomes, provenance and checksums](results/README.md).
+The [evidence guide](analysis/README.md#evidence-guide) maps each analysis to
+its inputs, expected outputs, resampling settings and interpretation limits.
 Seeds and resampling counts are recorded in the analysis scripts and their
 outputs. The focused run repeated six BLIP Pet cells and all 24 Flickr30k
 cells; it did not independently repeat every historical Pet configuration.
@@ -183,9 +185,23 @@ questions, also include the GPU model and CUDA environment.
 
 ## Citation and licensing
 
-Author and title metadata are provided in [CITATION.cff](CITATION.cff).
-Stable code snapshot: [v1.0.4](https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.4).
-Proceedings DOI and publication details will be added when available.
+Please cite the **accepted paper** when using the study or its results:
+
+> Trong Cuong Tran. *Testing Checkpoint–Resolution Alignment in Frozen
+> Dual-Embedding Vision–Language Checkpoints: Accuracy and Recorded-Protocol
+> Costs*. Accepted at DICTA 2026. Final proceedings metadata pending.
+
+Also identify the **software snapshot** used: Trong Cuong Tran,
+*Checkpoint–Resolution Alignment*, version
+[v1.0.4](https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.4),
+10 October 2026, commit `d418fbc97e1572b1e60aecf012f71466d9156dea`.
+If using a later checkout, report its commit as well.
+
+[CITATION.cff](CITATION.cff) keeps the software version and commit in its
+top-level metadata and the accepted paper in `preferred-citation`, used by
+GitHub's **Cite this repository** feature. DOI, pages and final proceedings
+details will be added when available. See [CHANGELOG.md](CHANGELOG.md) for
+the existing release history and subsequent documentation updates on `main`.
 
 The project code is licensed under the [MIT License](LICENSE).
 Copyright (c) 2026 Trong Cuong Tran. Third-party dependencies retain their own

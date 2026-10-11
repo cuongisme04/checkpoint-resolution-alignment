@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "Please cite the accompanying DICTA 2026 paper when using this software or its results. Final proceedings metadata will be added when available."
+message: "Please cite the accepted DICTA 2026 paper below and identify the software version used. The top-level metadata describes the v1.0.4 software snapshot; final paper proceedings metadata is pending."
 type: software
 title: "Testing Checkpoint–Resolution Alignment in Frozen Dual-Embedding Vision–Language Checkpoints: Accuracy and Recorded-Protocol Costs"
 authors:
@@ -10,5 +10,17 @@ authors:
 repository-code: "https://github.com/cuongisme04/checkpoint-resolution-alignment"
 url: "https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.4"
 version: 1.0.4
+commit: d418fbc97e1572b1e60aecf012f71466d9156dea
 date-released: 2026-10-10
 license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "Testing Checkpoint–Resolution Alignment in Frozen Dual-Embedding Vision–Language Checkpoints: Accuracy and Recorded-Protocol Costs"
+  authors:
+    - family-names: Tran
+      given-names: Trong Cuong
+      affiliation: The University of Sydney
+  conference:
+    name: "International Conference on Digital Image Computing: Techniques and Applications (DICTA 2026)"
+  year: 2026
+  notes: "Accepted at DICTA 2026. Final proceedings metadata, including DOI and page numbers, is pending."
