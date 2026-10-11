@@ -10,10 +10,17 @@ python3 scripts/verify_release.py
 ```
 
 This runs existing numerical/protocol tests, both protocol dry runs, the
-statistical replay, and the three camera-ready figure scripts. It compares
+statistical replay, the exploratory BLIP top-five diagnostic, and the three
+camera-ready figure scripts. It compares
 the replayed results with `results/expected/`, using exact labels and a
 1e-12 tolerance for floating-point values, and confirms that input files did
 not change. Logs and a JSON report are written to `build/verification/`.
+
+[GitHub Actions](https://github.com/cuongisme04/checkpoint-resolution-alignment/actions/workflows/verify.yml)
+runs the same command on Ubuntu 24.04 with Python 3.11 for pushes to `main`,
+new version tags, pull requests, and manual runs. Reports and step logs are
+attached to each run for 30 days. This checks analysis replay and protocol
+construction; it does not download datasets or models or repeat GPU inference.
 
 ## Evidence guide
 
@@ -34,6 +41,7 @@ from 0 to 1 (Pet accuracy or mean bidirectional retrieval Recall@1).
 | Fixed-reference mismatch–regret association: canonical summary above | [mock_review_analysis.py](mock_review_analysis.py) → [per-row regret](../results/expected/focused/normalized_regret_rows.csv), [sweep correlations](../results/expected/focused/mismatch_sweep_correlations.csv), [summary](../results/expected/focused/mismatch_summary.json) | Median-correlation interval: checkpoint clusters, seed `20260714`. Conditional test: permute regret within each eligible sweep, seed `20260715` | 13 eligible sweeps from seven checkpoints; fixed references and sampled grids. The checkpoint interval differs from test-sample intervals; the permutation test does not establish causality. |
 | Exploratory BLIP Pet comparison, `100 × (y336 − y384)` percentage points: focused Pet outcomes above | [camera_ready_blip_pairing.py](camera_ready_blip_pairing.py) → [blip_pet_336_vs_384.csv](../results/expected/blip_pet_336_vs_384.csv) | 3,669 matched image pairs per model; seed `20260915`, fresh PCG64 generator per model | Pointwise 95% percentile intervals; comparison chosen after inspecting sweeps, without selection or multiplicity correction. |
 | Batch sensitivity: [6,000 timing observations](../results/supporting/focused_run/batch_sensitivity/raw_batch_timings.csv) | [batch_sensitivity_analysis.py](batch_sensitivity_analysis.py) → [configuration summaries](../results/expected/focused/batch_configuration_summary.csv), [batch comparisons](../results/expected/focused/batch_pair_comparisons.csv) | Deterministic summaries; no resampling or seed | Cached-input image-encoder timing at batches 1 and 32. Timing percentiles describe observations, not confidence intervals or full-adapter costs. |
+| Final exploratory BLIP Pet top-one/top-five diagnostic: focused Pet outcomes and configuration index above | [blip_pet_top5_diagnostic.py](blip_pet_top5_diagnostic.py) → [blip_pet_top5_diagnostic.json](../results/expected/blip_pet_top5_diagnostic.json) | Descriptive counts on 3,669 matched image pairs per model; no resampling or seed | All 208 base and 167 large top-one correctness changes retain the true breed in the top five at both resolutions. This does not identify competing labels, score margins, statistical equivalence, or a causal mechanism. |
 
 Use the explicit canonical-summary argument in the focused analysis command
 below; that script's standalone default still points to the historical
@@ -85,6 +93,30 @@ retrieval summaries, paired BLIP anchor contrasts, mismatch/regret analysis,
 the conditional permutation test, batch comparisons, and the exploratory
 336-versus-384 Pet contrast. Seeds and replication counts are recorded in the
 outputs. Repeated resampling of saved outcomes is not a new model experiment.
+
+## Final exploratory BLIP top-five diagnostic
+
+```sh
+python3 analysis/blip_pet_top5_diagnostic.py
+```
+
+This dependency-free script replays the descriptive audit added to the final
+discussion and supplement. It validates the retained input hashes, image-ID
+pairing, matching protocols, logical consistency of top-one/top-five outcomes,
+and agreement with canonical accuracies. It writes
+`analysis/processed/camera_ready/blip_pet_top5_diagnostic.json`.
+The checked-in expected JSON preserves the counts and interpretation from the
+11 October 2026 manuscript audit. Tests also check row-order independence,
+contrast direction, invalid pairs, and cases where a changed top-one outcome
+does not retain the true class in the top five.
+
+The 336-minus-384 top-five differences are -0.27 percentage points for base
+and +0.05 for large. These are descriptive observations selected after seeing
+the sweeps. Image resampling, visual-token count, and positional-grid
+interpolation vary together; the cause of the exception remains unresolved.
+No model inference is performed. This script and its expected output were
+added after the paper-cited `v1.0.4`; the retained inputs and canonical results
+are unchanged.
 
 ## Camera-ready figures
 

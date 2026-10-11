@@ -2,6 +2,8 @@
 
 Code and compact results for the paper accepted at **DICTA 2026**.
 
+[![Verify retained results](https://github.com/cuongisme04/checkpoint-resolution-alignment/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/cuongisme04/checkpoint-resolution-alignment/actions/workflows/verify.yml)
+
 **Author:** Trong Cuong Tran, The University of Sydney, Sydney, Australia.
 
 The study evaluates frozen vision–language checkpoints on Oxford-IIIT-Pet
@@ -123,12 +125,14 @@ cells; it did not independently repeat every historical Pet configuration.
 
 ## Reproduce the analysis without a GPU
 
-Use Python 3.11. The following commands check out the paper-cited `v1.0.4`
-snapshot, create an isolated environment, and install the analysis dependencies.
+Use Python 3.11. The following commands check out `v1.0.5`, which adds the
+final exploratory BLIP top-five diagnostic and automated verification to the
+unchanged paper results. They create an isolated environment and install the
+analysis dependencies.
 Run the Python commands from the repository root:
 
 ```sh
-git clone --branch v1.0.4 https://github.com/cuongisme04/checkpoint-resolution-alignment.git
+git clone --branch v1.0.5 https://github.com/cuongisme04/checkpoint-resolution-alignment.git
 cd checkpoint-resolution-alignment
 python3 -m venv .venv
 . .venv/bin/activate
@@ -139,7 +143,10 @@ python3 scripts/verify_release.py
 The verification command runs the numerical and protocol tests, regenerates
 the 54-row analysis and figures, replays the recorded bootstrap/permutation
 and batch analyses, and checks them against the supplied expected results.
-It also verifies the additional exploratory 336-versus-384 BLIP Pet contrast.
+It also verifies the exploratory 336-versus-384 BLIP Pet contrast and the final
+top-one/top-five diagnostic. To replay the original paper-cited package,
+clone `--branch v1.0.4` instead; that snapshot does not contain the later
+diagnostic script or CI workflow.
 It downloads no models or datasets and runs no GPU inference. Derived outputs
 are written to ignored `analysis/processed/` and verification logs to `build/`.
 
@@ -147,6 +154,10 @@ Successful verification exits with code 0 and writes
 `build/verification/report.json` with `"status": "PASS"`. Camera-ready figures
 are generated under `analysis/processed/camera_ready/figures/`. This verifies
 the saved numerical evidence and protocols; it does not repeat GPU inference.
+
+The [verification workflow](https://github.com/cuongisme04/checkpoint-resolution-alignment/actions/workflows/verify.yml)
+runs this command on Ubuntu 24.04 with Python 3.11. Each run provides step
+logs and a JSON report as a downloadable artifact retained for 30 days.
 
 The original result CSVs are never overwritten. See
 [analysis/README.md](analysis/README.md) for individual commands and statistical
@@ -174,6 +185,7 @@ and command construction; it does not constitute a new GPU replication.
 - The focused GPU run did not repeat all historical Pet configurations or establish cross-hardware timing generality.
 - The two PaliGemma cells use different released resolution-specific checkpoints and do not validate a frozen-weight resolution sweep on generative tasks.
 - The extra BLIP Pet comparison is exploratory, with pointwise intervals and no correction for choosing the comparison after examining the sweeps.
+- The final top-five diagnostic is descriptive: all changed top-one correctness cases retain the true breed in the top five, but the cause of the ranking changes remains unresolved.
 - Historical Pet intervals are retained from the recorded summary; original per-image outcomes for every historical checkpoint are not included.
 
 ## Questions and issues
@@ -191,17 +203,18 @@ Please cite the **accepted paper** when using the study or its results:
 > Dual-Embedding Vision–Language Checkpoints: Accuracy and Recorded-Protocol
 > Costs*. Accepted at DICTA 2026. Final proceedings metadata pending.
 
-Also identify the **software snapshot** used: Trong Cuong Tran,
-*Checkpoint–Resolution Alignment*, version
+Also identify the **software snapshot** used. The paper cites
 [v1.0.4](https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.4),
-10 October 2026, commit `d418fbc97e1572b1e60aecf012f71466d9156dea`.
-If using a later checkout, report its commit as well.
+10 October 2026, commit `d418fbc97e1572b1e60aecf012f71466d9156dea`;
+that tag and its contents are preserved. The extended verification package is
+[v1.0.5](https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.5),
+12 October 2026. If using a later checkout, report its commit as well.
 
-[CITATION.cff](CITATION.cff) keeps the software version and commit in its
+[CITATION.cff](CITATION.cff) identifies the current software version in its
 top-level metadata and the accepted paper in `preferred-citation`, used by
 GitHub's **Cite this repository** feature. DOI, pages and final proceedings
 details will be added when available. See [CHANGELOG.md](CHANGELOG.md) for
-the existing release history and subsequent documentation updates on `main`.
+the version history and the additions after the paper-cited snapshot.
 
 The project code is licensed under the [MIT License](LICENSE).
 Copyright (c) 2026 Trong Cuong Tran. Third-party dependencies retain their own

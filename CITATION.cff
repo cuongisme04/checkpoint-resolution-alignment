@@ -1,6 +1,19 @@
 cff-version: 1.2.0
-message: "Please cite the accepted DICTA 2026 paper below and identify the software version used. The top-level metadata describes the v1.0.4 software snapshot; final paper proceedings metadata is pending."
+message: "Please cite the accepted DICTA 2026 paper below and identify the software version used. This is the v1.0.5 verification package; the paper-cited v1.0.4 snapshot remains unchanged. Final paper proceedings metadata is pending."
 type: software
+abstract: >-
+  Code and retained numerical evidence for the accepted DICTA 2026 study of
+  checkpoint-resolution alignment in frozen vision-language checkpoints on
+  Oxford-IIIT-Pet classification and Flickr30k retrieval. Version 1.0.5 adds
+  the final exploratory BLIP top-five diagnostic and automated CPU analysis
+  verification. Canonical measurements and the paper-cited v1.0.4 snapshot
+  are unchanged. Replaying saved statistics does not repeat GPU inference
+  or establish the causal mechanism of task-dependent resolution effects.
+keywords:
+  - vision-language models
+  - inference resolution
+  - reproducibility
+  - measurement study
 title: "Testing Checkpoint–Resolution Alignment in Frozen Dual-Embedding Vision–Language Checkpoints: Accuracy and Recorded-Protocol Costs"
 authors:
   - family-names: Tran
@@ -8,10 +21,9 @@ authors:
     affiliation: The University of Sydney
     email: trantrongcuong1012@gmail.com
 repository-code: "https://github.com/cuongisme04/checkpoint-resolution-alignment"
-url: "https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.4"
-version: 1.0.4
-commit: d418fbc97e1572b1e60aecf012f71466d9156dea
-date-released: 2026-10-10
+url: "https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.5"
+version: 1.0.5
+date-released: 2026-10-12
 license: MIT
 preferred-citation:
   type: conference-paper

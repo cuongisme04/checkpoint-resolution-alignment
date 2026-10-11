@@ -5,10 +5,24 @@ Australia/Sydney. [v1.0.4](https://github.com/cuongisme04/checkpoint-resolution-
 remains the paper-cited code and results snapshot at commit
 `d418fbc97e1572b1e60aecf012f71466d9156dea`.
 
+## [v1.0.5](https://github.com/cuongisme04/checkpoint-resolution-alignment/tree/v1.0.5) — 2026-10-12
+
+- Publish the final manuscript's exploratory BLIP Pet top-one/top-five
+  diagnostic, using unchanged retained outcomes. Include the original expected
+  JSON, validation of the input hashes and paired protocols, and focused tests.
+- Integrate that diagnostic into the complete numerical verifier and evidence guide.
+- Add a GitHub Actions workflow for CPU verification on Python 3.11, with
+  downloadable reports and logs. This does not repeat GPU inference.
+- Include the documentation improvements listed below. Update the current
+  software citation while preserving `v1.0.4` as the paper-cited snapshot.
+- No canonical measurements, prior expected statistics, benchmark adapters,
+  paper PDFs or supplementary PDFs are changed or added.
+
 ## Documentation after v1.0.4 — 2026-10-11
 
-These updates are on `main`; they do not create a new release or change any
-existing tag, experiment code, canonical results or expected statistics.
+These updates were initially published on `main` without a new release and
+are included in `v1.0.5`. They changed no existing tag, experiment code,
+canonical result or expected statistic.
 
 - Clarify the historical 50-cell protocol, focused run and merged 54-row matrix;
   correct reproduction working-directory instructions.

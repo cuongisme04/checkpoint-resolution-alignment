@@ -75,6 +75,7 @@ def main():
         "--input", f"{support}/batch_sensitivity/raw_batch_timings.csv",
         "--output-dir", "analysis/processed/mock_review")
     run("camera_ready_pairing", "analysis/camera_ready_blip_pairing.py")
+    run("blip_top5_diagnostic", "analysis/blip_pet_top5_diagnostic.py")
     for figure in ("cost", "resolution", "proxy"):
         run(f"figure_{figure}", f"analysis/render_camera_ready_{figure}_figure.py")
 
@@ -91,6 +92,11 @@ def main():
     actual = ROOT / "analysis/processed/camera_ready/blip_pet_336_vs_384.csv"
     if not equivalent(read_result(expected), read_result(actual)):
         raise RuntimeError("Camera-ready paired contrast differs from the recorded result")
+    comparisons.append(str(expected.relative_to(ROOT)))
+    expected = ROOT / "results/expected/blip_pet_top5_diagnostic.json"
+    actual = ROOT / "analysis/processed/camera_ready/blip_pet_top5_diagnostic.json"
+    if not equivalent(read_result(expected), read_result(actual)):
+        raise RuntimeError("BLIP top-five diagnostic differs from the recorded result")
     comparisons.append(str(expected.relative_to(ROOT)))
     after = {name: digest(ROOT / name) for name in before}
     if before != after:

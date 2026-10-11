@@ -34,6 +34,13 @@ Pet model. The canonical file retains those original summary intervals.
 `expected/` contains the statistical outputs used for verification. Generated
 plots, tables, and analysis summaries are recreated under `analysis/processed/`.
 
+`expected/blip_pet_top5_diagnostic.json` preserves the final manuscript's
+11 October 2026 exploratory diagnostic, published with its replay script
+after `v1.0.4`. It uses the same retained Pet outcomes and configuration index;
+it adds no GPU measurement and does not change the canonical matrix. Its
+hashes identify the three inputs, and its limitations distinguish descriptive
+ranking changes from an unresolved causal explanation.
+
 ## Provenance
 
 The package uses the benchmark and numerical analysis from the working branch

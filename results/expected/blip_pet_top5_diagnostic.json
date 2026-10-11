@@ -1,0 +1,68 @@
+{
+  "status": "Exploratory post-review diagnostic; descriptive counts, not a causal test",
+  "input_sha256": {
+    "outcomes": "d3ead7ffa981a1d2f61d03a459444a34878f4c7b725d4e2dbd7a77150a78ca75",
+    "configurations": "535f24f787fc1ba787d1bf7c9e77703c431ea61b756c7e67a8a86f7e31d40cc6",
+    "canonical": "4b20a406983ff3d43dcba2cd1d7319a830cc6cd1ab4340221f65bad71cdcbbf7"
+  },
+  "checks": "Unique matched IDs; same recorded protocol except resolution; top-1/top-5 logical consistency; exact canonical accuracy reproduction",
+  "results": [
+    {
+      "model_id": "blip_itm_base_coco",
+      "paired_images": 3669,
+      "metrics": {
+        "top1": {
+          "correct_336": 2389,
+          "correct_384": 2373,
+          "gains_at_336": 112,
+          "losses_at_336": 96,
+          "difference_percentage_points": 0.4360861270100845
+        },
+        "top5": {
+          "correct_336": 3480,
+          "correct_384": 3490,
+          "gains_at_336": 16,
+          "losses_at_336": 26,
+          "difference_percentage_points": -0.2725538293813028
+        }
+      },
+      "top1_changes_true_label_in_top5_at_both": 208,
+      "top1_changes_total": 208
+    },
+    {
+      "model_id": "blip_itm_large_coco",
+      "paired_images": 3669,
+      "metrics": {
+        "top1": {
+          "correct_336": 2576,
+          "correct_384": 2545,
+          "gains_at_336": 99,
+          "losses_at_336": 68,
+          "difference_percentage_points": 0.8449168710820387
+        },
+        "top5": {
+          "correct_336": 3496,
+          "correct_384": 3494,
+          "gains_at_336": 18,
+          "losses_at_336": 16,
+          "difference_percentage_points": 0.05451076587626056
+        }
+      },
+      "top1_changes_true_label_in_top5_at_both": 167,
+      "top1_changes_total": 167
+    }
+  ],
+  "interpretation": "For every image whose top-1 correctness changes, the true breed remains in the top five at both resolutions. These cases change between rank one and a non-winning top-five position. This does not identify which wrong breed won, score margins, or the cause of the ranking change.",
+  "limitations": [
+    "The analysis was chosen after seeing the main results and is descriptive.",
+    "Top-five aggregate stability does not establish statistical equivalence.",
+    "Retained outcomes do not contain logits, competing labels, or image attributes.",
+    "Input resampling, token count and positional-grid interpolation vary jointly; saved outcomes cannot isolate their contributions.",
+    "Source inspection describes the retained adapter and documented Transformers 4.44.2 behavior; historical model-hub revisions were not pinned."
+  ],
+  "implementation_sources": [
+    "https://github.com/huggingface/transformers/blob/v4.44.2/src/transformers/models/blip/modeling_blip.py#L208-L250",
+    "https://github.com/huggingface/transformers/blob/v4.44.2/src/transformers/models/blip/image_processing_blip.py",
+    "https://github.com/salesforce/BLIP/blob/main/configs/retrieval_coco.yaml"
+  ]
+}
