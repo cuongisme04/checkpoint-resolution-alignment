@@ -1,8 +1,8 @@
 # Expected output schema
 
-## Raw benchmark outputs
+## Historical protocol outputs
 
-The recorded runner writes under the selected `--output-root`:
+The recorded 50-cell runner writes under the selected `--output-root`:
 
 ```text
 classification/benchmark_rows.csv
@@ -37,13 +37,55 @@ computes amortised per-image cost as:
 tau_img_ms = 1000 / throughput_examples_s
 ```
 
-The large classification prediction file contains per-image correctness used
-by the descriptive bootstrap. It is deliberately excluded from Git.
+The large historical classification prediction file contains per-image
+correctness used by the descriptive bootstrap. It is excluded from Git;
+the retained focused-run outcomes described below are included separately.
+
+## Focused protocol outputs
+
+The focused runner writes under its selected `--output-root`:
+
+```text
+classification/benchmark_rows.csv
+classification/compact_outcomes.csv
+classification/configuration_index.csv
+retrieval/benchmark_rows.csv
+retrieval/grouped_outcomes.csv
+retrieval/configuration_index.csv
+batch_sensitivity/raw_batch_timings.csv
+run_manifest.json
+```
+
+Successful completion produces:
+
+- **6 classification summaries** and **22,014 compact Pet outcomes**
+  (6 configurations × 3,669 test images);
+- **24 retrieval summaries** and **24,000 grouped Flickr30k outcomes**
+  (24 configurations × 1,000 images, with hit counts for each image's five captions);
+- **6,000 batch-timing observations** across 24 cached-input timing configurations;
+- separate classification and retrieval configuration indexes, plus a run
+  manifest recording commands and protocol, registry, and dataset-manifest hashes.
+
+Failure files may also be written if configurations error. Compact outcomes
+use hashed sample identifiers and correctness/hit counts rather than image
+paths or caption text. The curated release retains these outcomes, indexes,
+and timings under `results/supporting/focused_run/`, with the sanitized manifest
+named `run_manifest_outcomes.json`; see the [retained-data guide](../results/README.md).
 
 ## Canonical and processed outputs
 
-The published canonical summary contains 50 rows with confidence-interval and
-legacy Pareto fields. `analysis/regenerate_results.py` validates it and writes:
+The published canonical summary,
+`results/canonical/dicta_mock_review_54_with_ci.csv`, contains **54 configurations**:
+30 Pet classification rows and 24 Flickr30k retrieval rows. The retained
+historical baseline, `results/historical/summary_50.csv`, contains **50 configurations**:
+28 classification rows and 22 retrieval rows. These are distinct inputs; the
+historical runner alone does not produce the merged 54-row paper matrix.
+Focused results replace overlapping historical rows and add the four exact-384
+BLIP configurations. The separate batch-sensitivity cells are not part of the
+54-row accuracy/retrieval matrix.
+
+The canonical summary retains confidence-interval and legacy Pareto fields.
+`analysis/regenerate_results.py` validates it and writes:
 
 - `analysis/processed/summary_with_tau_and_pareto.csv`;
 - task-specific Pareto CSVs;

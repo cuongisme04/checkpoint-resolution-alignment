@@ -11,6 +11,23 @@ PaliGemma class-likelihood diagnostics. Recorded latency and memory use
 adapter-specific protocols and do not establish intrinsic cross-family
 efficiency rankings.
 
+## Main findings
+
+Increasing inference resolution did not consistently improve the evaluated
+frozen checkpoints. Across 13 correlation-eligible task sweeps from seven
+checkpoints, the closest measured resolution to the fixed reference was best
+in **10 of 13 sweeps**. Median mismatch–regret Spearman correlation was **0.90**,
+with a checkpoint-bootstrap 95% interval of **[0.50, 1.00]**. Both BLIP ITC
+retrieval sweeps peaked at the tested 384-pixel input, while both BLIP Pet
+sweeps peaked at 336 pixels. The reference is therefore a starting point for
+task-specific evaluation, not a universal optimum.
+
+These findings describe the tested frozen checkpoints on Pet and Flickr30k;
+they do not establish generality to VQA or captioning, or an intrinsic
+cross-family efficiency ranking. See the [alignment statistics](results/expected/focused/mismatch_summary.json)
+and [per-sweep results](results/expected/focused/mismatch_sweep_correlations.csv)
+for the numerical evidence and exceptions.
+
 ## What is included
 
 | Directory | Contents |
@@ -104,10 +121,13 @@ cells; it did not independently repeat every historical Pet configuration.
 
 ## Reproduce the analysis without a GPU
 
-Use Python 3.11. Create an isolated environment and install the
-analysis dependencies:
+Use Python 3.11. The following commands check out the paper-cited `v1.0.4`
+snapshot, create an isolated environment, and install the analysis dependencies.
+Run the Python commands from the repository root:
 
 ```sh
+git clone --branch v1.0.4 https://github.com/cuongisme04/checkpoint-resolution-alignment.git
+cd checkpoint-resolution-alignment
 python3 -m venv .venv
 . .venv/bin/activate
 python3 -m pip install -r requirements-analysis.txt
@@ -120,6 +140,11 @@ and batch analyses, and checks them against the supplied expected results.
 It also verifies the additional exploratory 336-versus-384 BLIP Pet contrast.
 It downloads no models or datasets and runs no GPU inference. Derived outputs
 are written to ignored `analysis/processed/` and verification logs to `build/`.
+
+Successful verification exits with code 0 and writes
+`build/verification/report.json` with `"status": "PASS"`. Camera-ready figures
+are generated under `analysis/processed/camera_ready/figures/`. This verifies
+the saved numerical evidence and protocols; it does not repeat GPU inference.
 
 The original result CSVs are never overwritten. See
 [analysis/README.md](analysis/README.md) for individual commands and statistical
@@ -148,6 +173,13 @@ and command construction; it does not constitute a new GPU replication.
 - The two PaliGemma cells use different released resolution-specific checkpoints and do not validate a frozen-weight resolution sweep on generative tasks.
 - The extra BLIP Pet comparison is exploratory, with pointwise intervals and no correction for choosing the comparison after examining the sweeps.
 - Historical Pet intervals are retained from the recorded summary; original per-image outcomes for every historical checkpoint are not included.
+
+## Questions and issues
+
+For reproduction questions or bug reports, [open a GitHub issue](https://github.com/cuongisme04/checkpoint-resolution-alignment/issues).
+Include the release tag or commit, the command and working directory, your
+Python and relevant package versions, and the error output. For GPU benchmark
+questions, also include the GPU model and CUDA environment.
 
 ## Citation and licensing
 

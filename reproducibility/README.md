@@ -22,7 +22,7 @@ executed and timings were not replicated across pods.
 - `benchmark/configs/models.json`: exact OpenCLIP checkpoint identifiers.
 - `benchmark/configs/hf_models.json`: exact BLIP and PaliGemma Hub identifiers.
 - `benchmark/configs/recorded_protocol.json`: reconstructed executable form of
-  the settings recorded in the canonical 50 rows.
+  the settings recorded in the historical 50-row baseline.
 - `benchmark/scripts/run_recorded_protocol.py`: validates, dry-runs, or executes
   those settings without silently appending to an existing result CSV.
 - `benchmark/configs/mock_review_protocol.json`: focused BLIP-384, grouped
@@ -45,7 +45,8 @@ executed and timings were not replicated across pods.
 
 ## CPU-only validation
 
-From the repository root:
+From the repository root (`checkpoint-resolution-alignment/`), with the
+[analysis dependencies](../README.md#reproduce-the-analysis-without-a-gpu) installed:
 
 ```sh
 python3 -m unittest discover \
@@ -65,7 +66,7 @@ The mock-review dry run must additionally report 6 Pet BLIP validation cells,
 24 Flickr30k grouped-outcome cells, and 24 batch-sensitivity cells.
 The recorded environments and stop conditions are described below. The
 release includes sanitized focused-run inputs under `../results/supporting/`;
-run `python3 scripts/verify_release.py` from the package root for a complete
+run `python3 scripts/verify_release.py` from the repository root for a complete
 CPU replay against the expected statistics.
 
 ## Focused post-review protocol
@@ -85,17 +86,20 @@ captions. A separate configuration index records checkpoint, manifest
 checksum, scoring path, batch sizes, precision, and timing settings. The run
 manifest sanitizes command paths and retains registry and input checksums.
 
-Inspect the exact commands before a pod is provisioned:
+From the repository root, inspect the exact commands before a pod is provisioned:
 
 ```sh
-python3 benchmark/scripts/run_mock_review_protocol.py --dry-run
+python3 reproducibility/benchmark/scripts/run_mock_review_protocol.py --dry-run
 ```
 
 ## GPU environment
 
 Reported rows come from rented RunPod pods, each with one NVIDIA RTX 6000 Ada
 Generation GPU (48 GB). The focused run used a separate recorded software
-environment from the retained historical Pet rows. To create a compatible environment:
+environment from the retained historical Pet rows. Start the following block
+from the repository root to create a compatible environment. It enters
+`reproducibility/benchmark/`; stay in that directory for dataset preparation
+and the recorded sweep below.
 
 ```sh
 cd reproducibility/benchmark
@@ -125,11 +129,15 @@ MIT license does not apply to downloaded dataset images, captions or model weigh
 The benchmark scripts create absolute image paths in local manifest files.
 Those manifests and downloaded images are ignored by Git.
 
+Run the commands in this section from `reproducibility/benchmark/`. If you
+followed the GPU environment block, you are already there; otherwise, enter
+that directory from the repository root and activate the benchmark environment
+before continuing.
+
 Oxford-IIIT Pet uses the official 3,669-image, 37-class test split distributed
 through `torchvision==0.19.1`:
 
 ```sh
-cd reproducibility/benchmark
 python3 scripts/make_oxford_pet_manifest.py \
   --data-root datasets/oxford_pet \
   --split test \
@@ -154,13 +162,13 @@ before an expensive rerun.
 
 ## Recorded 50-cell sweep
 
-Inspect every command first:
+From `reproducibility/benchmark/`, inspect every command first:
 
 ```sh
 python3 scripts/run_recorded_protocol.py --dry-run
 ```
 
-Then execute on a suitable CUDA host:
+Then execute from the same directory on a suitable CUDA host:
 
 ```sh
 python3 scripts/run_recorded_protocol.py \
@@ -197,8 +205,14 @@ results/canonical/dicta_mock_review_54_with_ci.csv
 
 Its SHA-256 is
 `4b20a406983ff3d43dcba2cd1d7319a830cc6cd1ab4340221f65bad71cdcbbf7`.
-Run `python3 analysis/regenerate_results.py --input
-results/canonical/dicta_mock_review_54_with_ci.csv` from the repository root.
+If continuing from the benchmark-directory commands above, run `cd ../..`
+first to return to the repository root. Then run:
+
+```sh
+python3 analysis/regenerate_results.py \
+  --input results/canonical/dicta_mock_review_54_with_ci.csv
+```
+
 The pipeline validates all 54 configurations, computes
 `tau_img_ms = 1000 / throughput_examples_s`, recomputes point-estimate Pareto
 frontiers, and regenerates processed CSVs, LaTeX tables, and vector figures.
